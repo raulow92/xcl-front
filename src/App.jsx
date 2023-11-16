@@ -5,7 +5,6 @@ import Home from "./views/Home";
 import Navigationbar from "./components/Navigationbar";
 import Transactions from "./views/Transactions";
 import Dashboard from "./views/Dashboard";
-import Dash from "./views/Dash";
 
 function App() {
   return (
@@ -19,7 +18,6 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/transactions" element={<Transactions />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/dash" element={<Dash />} />
         </Routes>
       </div>
     </Router>

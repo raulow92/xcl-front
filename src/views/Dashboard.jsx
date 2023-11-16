@@ -1,41 +1,15 @@
-import preciosEjemplo from "../preciosEjemplo.json";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend
-} from "recharts";
-
-
-const prices = preciosEjemplo.prices.map((precio) => ({timestamp: precio[0], value: precio[1]}))
+import TremorDashboard from "../components/TremorDashboard";
+// import RechartsDashboard from "../components/RechartsDashboard";
+import ExchangeCard from "../components/ExchageCard";
 
 const Dashboard = () => {
 
   return (
-    <>
-      <h1>Dashboard Page</h1>
-      <LineChart
-          width={500}
-          height={300}
-          data={prices}
-          margin={{
-            top: 5,
-            right: 30,
-            left: 20,
-            bottom: 5,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="timestamp" tickFormatter={(precio) => new Date(precio).toLocaleDateString()} />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Line type="monotone" dataKey="value" stroke="#82ca9d" />
-        </LineChart>
-    </>
+    <div className="grid lg:grid-cols-2 mt-8 gap-6">
+      <TremorDashboard />
+      <ExchangeCard />
+      {/* <RechartsDashboard /> */}
+    </div>
   );
 };
 export default Dashboard;

@@ -61,18 +61,18 @@ export default {
           background: {
             muted: "#131A2B", // custom
             subtle: "#1f2937", // gray-800
-            DEFAULT: "#111827", // gray-900
+            DEFAULT: "rgb(24, 24, 27)", // gray-900
             emphasis: "#d1d5db", // gray-300
           },
           border: {
-            DEFAULT: "#1f2937", // gray-800
+            DEFAULT: "rgb(39, 39, 42)", // gray-800
           },
           ring: {
-            DEFAULT: "#1f2937", // gray-800
+            DEFAULT: "rgb(39, 39, 42)", // gray-800
           },
           content: {
             subtle: "#4b5563", // gray-600
-            DEFAULT: "#6b7280", // gray-500
+            DEFAULT: "#A1A1AA", // gray-500
             emphasis: "#e5e7eb", // gray-200
             strong: "#f9fafb", // gray-50
             inverted: "#000000", // black
