@@ -31,10 +31,9 @@ const BuyCard = () => {
         }
       />
       <Button
-        color="default"
-        variant="bordered"
-        className="p-5"
-        onClick={() => alert("Logging in ")}
+        color="warning"
+        variant="shadow"
+        className="text-base font-medium p-5"
       >
         Comprar
       </Button>

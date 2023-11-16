@@ -10,7 +10,7 @@ const SellCard = () => {
         variant="bordered"
         type="number"
         label="Venderás"
-        placeholder="0.00 CLP"
+        placeholder="0.00"
         value={money}
         onChange={(e) => setMoney(e.target.value)}
         startContent={
@@ -23,7 +23,7 @@ const SellCard = () => {
         variant="bordered"
         type="number"
         label="Recibirás"
-        placeholder="0.00"
+        placeholder="0.00 CLP"
         startContent={
           <div className="pointer-events-none flex items-center">
             <span className="text-default-400 text-small">$</span>
@@ -31,10 +31,9 @@ const SellCard = () => {
         }
       />
       <Button
-        color="default"
-        variant="bordered"
-        className="p-5"
-        onClick={() => alert("Logging in ")}
+        color="warning"
+        variant="shadow"
+        className="text-base font-medium p-5"
       >
         Vender
       </Button>
