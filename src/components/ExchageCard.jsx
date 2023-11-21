@@ -5,13 +5,13 @@ import SellCard from "./SellCard";
 const ExchangeCard = () => {
   return (
     <div className="flex flex-col h-96">
-      <Card className="text-base p-6 mb-6">
+      <Card className="text-base py-4 px-6 mb-6">
         <CardBody className="">
           <h2 className="text-xl">Billetera</h2>
           <Divider/>
-          <div className="grid grid-cols-2">
-            <p>Tienes:</p>
-            <p>Tienes:</p>
+          <div className="grid grid-cols-2 mt-4">
+            <p className="text-lg"><span className="text-sm">Tienes:</span> 0.00 CLP</p>
+            <p className="text-lg"><span className="text-sm">Tienes:</span> 0.00 BTC</p>
           </div>
         </CardBody>
       </Card>
