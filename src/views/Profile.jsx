@@ -1,14 +1,24 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Divider,
+  Button,
+} from "@nextui-org/react";
 import axios from "axios";
 
 const Profile = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
-    async function getProfile() {
-      const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token");
+    const getProfile = async () => {
       if (token) {
         const { data } = await axios.get("http://localhost:8000/profile", {
           headers: {
@@ -19,16 +29,37 @@ const Profile = () => {
         setUsername(data.username);
         setEmail(data.email);
         setPhone(data.phone);
+      } else {
+        navigate("/login");
       }
-    }
+    };
     getProfile();
-  }, []);
+  }, [navigate]);
+
+  const onLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  }
+
   return (
     <>
-      <h1>Profile Page</h1>
-      <p>{username}</p>
-      <p>{email}</p>
-      <p>{phone}</p>
+      {username && (
+          <Card className="mt-20 mx-auto md:w-3/6 p-6">
+            <CardHeader className="flex justify-center">
+                <p className="text-2xl font-bold text-center">{username}</p>
+            </CardHeader>
+            <Divider />
+            <CardBody className="p-4 gap-2">
+              <p>Username: {username}</p>
+              <p>Email: {email}</p>
+              <p>Phone: {phone}</p>
+            </CardBody>
+            <Divider />
+            <CardFooter className="flex justify-center mt-2">
+                <Button onClick={onLogout} variant="bordered">Logout</Button>
+            </CardFooter>
+          </Card>
+      )}
     </>
   );
 };

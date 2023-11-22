@@ -7,8 +7,7 @@ const Navigationbar = () => {
           <Link className="text-3xl font-black" to="/">xCL.</Link>
         </div>
         <div className="flex gap-6">
-          <Link to="/dashboard">Dashboard</Link>
-          <Link to="/transactions">Transactions</Link>
+          <Link to="/">Dashboard</Link>
           <Link to="/profile">Profile</Link>
           <Link to="/login">Login</Link>
         </div>

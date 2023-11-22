@@ -9,7 +9,7 @@ const TremorDashboard = () => {
   return (
     <>
     <Card>
-      <Title>Closed Pull Requests</Title>
+      <Title>CLP/BTC</Title>
       <LineChart
         className="h-96"
         data={prices}

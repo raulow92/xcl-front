@@ -6,7 +6,7 @@ import {NextUIProvider} from '@nextui-org/react'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <NextUIProvider attribute="class" defaultTheme="dark">
+    <NextUIProvider attribute="class">
       <main className="dark text-foreground bg-background min-h-screen">
         <App />
       </main>

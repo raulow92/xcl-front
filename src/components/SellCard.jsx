@@ -9,8 +9,8 @@ const SellCard = () => {
       <Input
         variant="bordered"
         type="number"
-        label="Venderás"
-        placeholder="0.00"
+        label="Sell"
+        placeholder="0.00 BTC"
         value={money}
         onChange={(e) => setMoney(e.target.value)}
         startContent={
@@ -22,7 +22,7 @@ const SellCard = () => {
       <Input
         variant="bordered"
         type="number"
-        label="Recibirás"
+        label="Receive"
         placeholder="0.00 CLP"
         startContent={
           <div className="pointer-events-none flex items-center">
@@ -35,7 +35,7 @@ const SellCard = () => {
         variant="shadow"
         className="text-base font-medium p-5"
       >
-        Vender
+        Sell
       </Button>
     </form>
   );

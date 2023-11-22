@@ -9,7 +9,7 @@ const BuyCard = () => {
       <Input
         variant="bordered"
         type="number"
-        label="Pagarás"
+        label="Buy"
         placeholder="0.00 CLP"
         value={money}
         onChange={(e) => setMoney(e.target.value)}
@@ -22,8 +22,8 @@ const BuyCard = () => {
       <Input
         variant="bordered"
         type="number"
-        label="Recibirás"
-        placeholder="0.00"
+        label="Receive"
+        placeholder="0.00 BTC"
         startContent={
           <div className="pointer-events-none flex items-center">
             <span className="text-default-400 text-small">$</span>
@@ -35,7 +35,7 @@ const BuyCard = () => {
         variant="shadow"
         className="text-base font-medium p-5"
       >
-        Comprar
+        Buy
       </Button>
     </form>
   );

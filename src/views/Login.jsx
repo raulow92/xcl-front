@@ -1,36 +1,58 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Input, Button } from "@nextui-org/react";
 import EyeFilledIcon from "../components/EyeFilledIcon";
 import EyeSlashFilledIcon from "../components/EyeSlashFilledIcon";
 import axios from "axios";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isVisible, setIsVisible] = useState(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
+  const navigate = useNavigate();
 
   const onLogin = async () => {
-    const { data } = await axios.post("http://localhost:8000/login", {
-      username: email,
-      password,
-    });
-    console.log(data);
-    localStorage.setItem("token", data.token);
-    console.log(localStorage.getItem("token"));
+    if (!username || !password) {
+      alert("Please fill all the fields");
+      return;
+    }
+    try {
+      const { data } = await axios.post("http://localhost:8000/login", {
+        username,
+        password,
+      });
+      console.log(data);
+      localStorage.setItem("token", data.token);
+      console.log(localStorage.getItem("token"));
+      navigate("/profile");
+    } catch (error) {
+      alert("Invalid credentials");
+      console.log(error);
+    }
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      onLogin();
+    }
   };
 
   return (
-    <form className="flex flex-col mt-20 mx-auto h-auto md:w-3/6 gap-4">
+    <form
+      onKeyDown={handleKeyPress}
+      className="flex flex-col mt-20 mx-auto h-auto md:w-3/6 gap-4"
+    >
       <Input
         isClearable
         type="email"
         variant="bordered"
         label="Username"
         placeholder="Enter your username"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        onClear={() => setEmail("")}
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+        onClear={() => setUsername("")}
       />
       <Input
         label="Password"
