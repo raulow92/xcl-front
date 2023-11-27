@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { TokenContext } from "../context/TokenContext";
 import { useNavigate } from "react-router-dom";
 import { Input, Button } from "@nextui-org/react";
 import EyeFilledIcon from "../components/EyeFilledIcon";
@@ -9,6 +10,7 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isVisible, setIsVisible] = useState(false);
+  const { setIsLogged } = useContext(TokenContext);
   const toggleVisibility = () => setIsVisible(!isVisible);
   const navigate = useNavigate();
 
@@ -24,6 +26,7 @@ const Login = () => {
       });
       console.log(data);
       localStorage.setItem("token", data.token);
+      setIsLogged(true);
       console.log(localStorage.getItem("token"));
       navigate("/profile");
     } catch (error) {

@@ -1,8 +1,40 @@
+import {useEffect, useState} from "react"
 import {Tabs, Tab, Card, CardBody, Divider} from "@nextui-org/react";
 import BuyCard from "./BuyCard";
 import SellCard from "./SellCard";
+import axios from "axios";
 
 const ExchangeCard = () => {
+  const [buyQty, setBuyQty] = useState(0)
+  const [sellQty, setSellQty] = useState(0)
+  const [price, setPrice] = useState(0)
+  const [wallet , setWallet] = useState({})
+
+  // useEffect(() => {
+  //   const getWallet = async () => {
+  //     const token = localStorage.getItem("token")
+  //     if (token) {
+  //       const {data} = await axios.get("http://localhost:8000/wallet", {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       })
+  //       console.log(data);
+  //       setWallet(data)
+  //     }
+  //   }
+  //   getWallet()
+  // } , [])
+
+  // useEffect(() => {
+  //   const getPrice = async () => {
+  //     const {data} = await axios.get("http://localhost:8000/price")
+  //     console.log(data);
+  //     setPrice(data.price)
+  //   }
+  //   getPrice()
+  // }, [])
+
   return (
     <div className="flex flex-col h-96">
       <Card className="text-base py-4 px-6 mb-6">

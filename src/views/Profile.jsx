@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { TokenContext } from "../context/TokenContext";
 import { useNavigate } from "react-router-dom";
 import {
   Card,
@@ -15,6 +16,7 @@ const Profile = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const navigate = useNavigate();
+  const { setIsLogged } = useContext(TokenContext);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -38,6 +40,7 @@ const Profile = () => {
 
   const onLogout = () => {
     localStorage.removeItem("token");
+    setIsLogged(false);
     navigate("/login");
   }
 

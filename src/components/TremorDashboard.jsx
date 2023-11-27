@@ -1,10 +1,20 @@
+import { useEffect, useState } from "react";
 import { Card, LineChart, Title } from "@tremor/react";
-import preciosEjemplo from "../preciosEjemplo.json";
-
-const dateFormatter = (v) => new Date(v).toLocaleDateString();
-const prices = preciosEjemplo.prices.map((precio) => ({timestamp: dateFormatter(precio[0]), value: precio[1]}))
+import axios from "axios";
 
 const TremorDashboard = () => {
+  const dateFormatter = (v) => new Date(v).toLocaleDateString();
+  const [prices, setPrices] = useState([])
+  
+  useEffect(() => {
+    const getPrices = async () => {
+      const {data} = await axios.get("http://localhost:8000/chart")
+      // console.log(data);
+      const formatedPrices = data.prices.map((precio) => ({timestamp: dateFormatter(precio[0]), value: precio[1]}))
+      setPrices(formatedPrices)
+    }
+    getPrices()
+  }, [])
 
   return (
     <>
