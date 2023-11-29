@@ -26,7 +26,7 @@ const App = () => {
     <TokenContext.Provider value={{isLogged, setIsLogged}}>
       <Router>
         <Navigationbar />
-        <div className="App container mx-auto px-4 md:px-0">
+        <div className="App container mx-auto px-4 md:px-2">
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/profile" element={<Profile />} />

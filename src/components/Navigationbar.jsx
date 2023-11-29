@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState, useContext } from "react";
+import { useContext } from "react";
 import { TokenContext } from "../context/TokenContext";
 
 
@@ -8,7 +8,7 @@ const Navigationbar = () => {
 
   return (
     <div className="w-screen bg-[#18181b] py-2 px-12">
-      <div className="container text-sm mx-auto flex justify-between items-center text-neutral-100">
+      <div className="container text-sm mx-auto flex justify-between items-center text-neutral-100 px-4 md:px-2">
         <div>
           <Link className="text-3xl font-black" to="/">
             xCL.

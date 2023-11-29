@@ -53,7 +53,7 @@ const ExchangeCard = () => {
               BTC
             </p>
             <p className="text-lg text-right">
-              <span className="text-sm">Total:</span> {numberWithCommas((balance_btc * price) + balance_clp)}{" "}
+              <span className="text-sm">Total:</span> {numberWithCommas(((balance_btc * price) + balance_clp).toFixed(2))}{" "}
               CLP
             </p>
           </div>
