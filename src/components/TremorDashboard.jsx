@@ -18,7 +18,7 @@ const TremorDashboard = () => {
 
   return (
     <>
-    <Card>
+    <Card className="py-9">
       <Title>CLP/BTC</Title>
       <LineChart
         className="h-96"

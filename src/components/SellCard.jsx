@@ -1,39 +1,33 @@
 import { useState } from "react";
 import { Input, Button } from "@nextui-org/react";
+import numberWithCommas from "../logic/numberWithCommas";
 
-const SellCard = () => {
+const SellCard = ({balance_clp, balance_btc, price}) => {
   const [money, setMoney] = useState("");
 
   return (
     <form className="flex flex-col justify-center p-4 mx-auto w-full gap-4">
       <Input
+        size="lg"
         variant="bordered"
         type="number"
-        label="Sell"
+        label={`You'll sell (max: ${numberWithCommas(balance_btc)} BTC)`}
         placeholder="0.00 BTC"
         value={money}
         onChange={(e) => setMoney(e.target.value)}
-        startContent={
-          <div className="pointer-events-none flex items-center">
-            <span className="text-default-400 text-small">$</span>
-          </div>
-        }
       />
       <Input
+        size="lg"
         variant="bordered"
         type="number"
-        label="Receive"
+        label={`You'll receive (max: ${numberWithCommas(balance_btc * price)} CLP)`}
         placeholder="0.00 CLP"
-        startContent={
-          <div className="pointer-events-none flex items-center">
-            <span className="text-default-400 text-small">$</span>
-          </div>
-        }
       />
       <Button
         color="warning"
         variant="shadow"
         className="text-base font-medium p-5"
+        size="lg"
       >
         Sell
       </Button>

@@ -65,10 +65,10 @@ export default {
             emphasis: "#d1d5db", // gray-300
           },
           border: {
-            DEFAULT: "rgb(39, 39, 42)", // gray-800
+            DEFAULT: "rgb(24, 24, 27)", // gray-800
           },
           ring: {
-            DEFAULT: "rgb(39, 39, 42)", // gray-800
+            DEFAULT: "rgb(24, 24, 27)", // gray-800
           },
           content: {
             subtle: "#4b5563", // gray-600
