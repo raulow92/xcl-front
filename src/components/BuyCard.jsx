@@ -35,7 +35,7 @@ const BuyCard = ({ balance_clp, price }) => {
         onChange={handlePayChange}
         value={inputBuy}
         min={0}
-        max={balance_clp}
+        max={balance_clp ? balance_clp : undefined}
       />
       <Input
         size="lg"
@@ -46,7 +46,7 @@ const BuyCard = ({ balance_clp, price }) => {
         onChange={handleReceiveChange}
         value={inputReceive}
         min={0}
-        max={balance_clp / price}
+        max={balance_clp || price ? (balance_clp / price) : undefined}
       />
       <Button
         color="warning"

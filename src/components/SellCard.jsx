@@ -35,7 +35,7 @@ const SellCard = ({balance_btc, price}) => {
         onChange={handleSellChange}
         value={inputSell}
         min={0}
-        max={balance_btc}
+        max={balance_btc ? balance_btc : undefined}
       />
       <Input
         size="lg"
@@ -46,7 +46,7 @@ const SellCard = ({balance_btc, price}) => {
         onChange={handleReceiveChange}
         value={inputReceive}
         min={0}
-        max={balance_btc * price}
+        max={balance_btc || price ? (balance_btc * price) : undefined}
       />
       <Button
         color="warning"
