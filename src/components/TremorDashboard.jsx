@@ -25,7 +25,7 @@ const TremorDashboard = () => {
         data={prices}
         index="timestamp"
         categories={["value"]}
-        colors={["green"]}
+        colors={["amber"]}
         yAxisWidth={60}
         valueFormatter={v => millionSubs(v)}
       />

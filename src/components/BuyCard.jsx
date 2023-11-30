@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Input, Button } from "@nextui-org/react";
 import numberWithCommas from "../logic/numberWithCommas";
+import axios from "axios";
 
-const BuyCard = ({ balance_clp, price }) => {
+const BuyCard = ({ balance_clp, price, setWallet }) => {
   const [inputBuy, setInputBuy] = useState(undefined);
   const [inputReceive, setInputReceive] = useState(undefined);
 
@@ -22,6 +23,18 @@ const BuyCard = ({ balance_clp, price }) => {
       return;
     }
     setInputBuy((e.target.value * price).toFixed(2));
+  }
+
+  const buyBtc = async () => {
+    const token = localStorage.getItem('token')
+    const response = await axios.post('http://localhost:8000/buy/' + inputReceive, {}, {
+      headers: {
+        'Authorization': `Bearer ${token}` 
+      }
+    }) 
+    setWallet({balance_btc: response.data.balance_btc, balance_clp: response.data.balance_clp})
+    setInputBuy(undefined)
+    setInputReceive(undefined)
   }
 
   return (
@@ -53,6 +66,7 @@ const BuyCard = ({ balance_clp, price }) => {
         variant="shadow"
         size="lg"
         isDisabled={inputBuy > balance_clp || inputBuy <= 0 || inputBuy === undefined}
+        onClick={buyBtc}
       >
         Buy
       </Button>

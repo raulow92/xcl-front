@@ -6,8 +6,6 @@ import axios from "axios";
 import numberWithCommas from "../logic/numberWithCommas";
 
 const ExchangeCard = () => {
-  const [buyQty, setBuyQty] = useState(0);
-  const [sellQty, setSellQty] = useState(0);
   const [price, setPrice] = useState(0);
   const [wallet, setWallet] = useState({ balance_clp: 0, balance_btc: 0 });
   const { balance_clp, balance_btc } = wallet;
@@ -67,6 +65,7 @@ const ExchangeCard = () => {
                 balance_clp={balance_clp}
                 balance_btc={balance_btc}
                 price={price}
+                setWallet={setWallet}
               />
             </CardBody>
           </Card>
