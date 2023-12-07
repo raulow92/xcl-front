@@ -39,20 +39,22 @@ const ExchangeCard = () => {
     <div className="flex flex-col h-96">
       <Card className="text-base py-4 px-6 mb-6">
         <CardBody className="">
-          <h2 className="text-xl">Wallet</h2>
+          <div className="flex justify-between">
+            <h2 className="text-xl">Wallet</h2>
+            <p className="text-lg text-right">
+              <span className="text-sm">Total:</span> {numberWithCommas(((+balance_btc * +price) + +balance_clp).toFixed(2))}{" "}
+              CLP
+            </p>
+          </div>
           <Divider />
-          <div className="grid grid-cols-3 mt-4">
+          <div className="flex justify-between mt-4">
             <p className="text-lg">
-              <span className="text-sm">You have:</span> {numberWithCommas(balance_clp)}{" "}
+              <span className="text-sm">You have:</span> {numberWithCommas(+balance_clp)}{" "}
               CLP
             </p>
             <p className="text-lg text-center">
-              <span className="text-sm">You have:</span> {numberWithCommas(balance_btc)}{" "}
+              <span className="text-sm">You have:</span> {+balance_btc}{" "}
               BTC
-            </p>
-            <p className="text-lg text-right">
-              <span className="text-sm">Total:</span> {numberWithCommas(((balance_btc * price) + balance_clp).toFixed(2))}{" "}
-              CLP
             </p>
           </div>
         </CardBody>
@@ -77,6 +79,7 @@ const ExchangeCard = () => {
                 balance_clp={balance_clp}
                 balance_btc={balance_btc}
                 price={price}
+                setWallet={setWallet}
               />
             </CardBody>
           </Card>

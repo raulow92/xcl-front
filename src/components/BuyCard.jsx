@@ -13,7 +13,7 @@ const BuyCard = ({ balance_clp, price, setWallet }) => {
       setInputReceive("");
       return;
     }
-    setInputReceive((e.target.value / price).toFixed(6));
+    setInputReceive((e.target.value / price).toFixed(8));
   }
 
   const handleReceiveChange = (e) => {
@@ -22,7 +22,7 @@ const BuyCard = ({ balance_clp, price, setWallet }) => {
       setInputBuy("");
       return;
     }
-    setInputBuy((e.target.value * price).toFixed(2));
+    setInputBuy((e.target.value * price).toFixed(0));
   }
 
   const buyBtc = async () => {
@@ -33,8 +33,8 @@ const BuyCard = ({ balance_clp, price, setWallet }) => {
       }
     }) 
     setWallet({balance_btc: response.data.balance_btc, balance_clp: response.data.balance_clp})
-    setInputBuy(undefined)
-    setInputReceive(undefined)
+    setInputBuy("")
+    setInputReceive("")
   }
 
   return (
@@ -43,29 +43,29 @@ const BuyCard = ({ balance_clp, price, setWallet }) => {
         size="lg"
         variant="bordered"
         type="number"
-        label={`You'll pay (max: ${numberWithCommas(balance_clp)} CLP)`}
+        label={`You'll pay (max: ${numberWithCommas(+balance_clp)} CLP)`}
         placeholder="0.00 CLP"
         onChange={handlePayChange}
-        value={inputBuy}
+        value={inputBuy || ""}
         min={0}
-        max={balance_clp ? balance_clp : undefined}
+        max={+balance_clp ? +balance_clp : undefined}
       />
       <Input
         size="lg"
         variant="bordered"
         type="number"
-        label={`You'll receive (max: ${(balance_clp / price).toFixed(6)} BTC)`}
+        label={`You'll receive (max: ${(+balance_clp / +price).toFixed(8)} BTC)`}
         placeholder="0.00 BTC"
         onChange={handleReceiveChange}
-        value={inputReceive}
+        value={inputReceive || ""}
         min={0}
-        max={balance_clp || price ? (balance_clp / price) : undefined}
+        max={+balance_clp || price ? (+balance_clp / +price) : undefined}
       />
       <Button
         color="warning"
         variant="shadow"
         size="lg"
-        isDisabled={inputBuy > balance_clp || inputBuy <= 0 || inputBuy === undefined}
+        isDisabled={+inputBuy > +balance_clp || +inputBuy <= 0 || inputBuy === undefined}
         onClick={buyBtc}
       >
         Buy
