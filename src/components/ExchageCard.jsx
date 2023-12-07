@@ -1,14 +1,18 @@
 import { useEffect, useState } from "react";
-import { Tabs, Tab, Card, CardBody, Divider } from "@nextui-org/react";
+import { Tabs, Tab, Card, CardBody, Divider} from "@nextui-org/react";
 import BuyCard from "./BuyCard";
 import SellCard from "./SellCard";
 import axios from "axios";
 import numberWithCommas from "../logic/numberWithCommas";
+import { useContext } from "react";
+import { TokenContext } from "../context/TokenContext";
+import { Link } from "react-router-dom";
 
 const ExchangeCard = () => {
   const [price, setPrice] = useState(0);
   const [wallet, setWallet] = useState({ balance_clp: 0, balance_btc: 0 });
   const { balance_clp, balance_btc } = wallet;
+  const { isLogged } = useContext(TokenContext);
 
   useEffect(() => {
     const getWallet = async () => {
@@ -41,21 +45,35 @@ const ExchangeCard = () => {
         <CardBody className="">
           <div className="flex justify-between">
             <h2 className="text-xl">Wallet</h2>
-            <p className="text-lg text-right">
-              <span className="text-sm">Total:</span> {numberWithCommas(((+balance_btc * +price) + +balance_clp).toFixed(2))}{" "}
-              CLP
-            </p>
+            {isLogged && (
+              <p className="text-lg text-right">
+                <span className="text-sm">Total:</span>{" "}
+                {numberWithCommas(
+                  (+balance_btc * +price + +balance_clp).toFixed(2)
+                )}{" "}
+                CLP
+              </p>
+            )}
           </div>
           <Divider />
           <div className="flex justify-between mt-4">
+            {isLogged ? (
+              
+            
+            <>
             <p className="text-lg">
-              <span className="text-sm">You have:</span> {numberWithCommas(+balance_clp)}{" "}
-              CLP
+              <span className="text-sm">You have:</span>{" "}
+              {numberWithCommas(+balance_clp)} CLP
             </p>
             <p className="text-lg text-center">
-              <span className="text-sm">You have:</span> {+balance_btc}{" "}
-              BTC
+              <span className="text-sm">You have:</span> {+balance_btc} BTC
             </p>
+            </>
+            
+            ) : (
+              <Link to="login" className="text-gray-400 text-lg w-full text-center hover:text-gray-100 transition-all ease-in-out duration-300">Login to see your wallet</Link>
+            )
+            }
           </div>
         </CardBody>
       </Card>
@@ -75,7 +93,7 @@ const ExchangeCard = () => {
         <Tab key="sell" title="Sell" className="h-12 text-lg px-6">
           <Card className="-mx-6">
             <CardBody>
-              <SellCard 
+              <SellCard
                 balance_clp={balance_clp}
                 balance_btc={balance_btc}
                 price={price}
